@@ -16,18 +16,24 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'leaflet-directive'
+    'leaflet-directive',
+    'angularVideoBg'
 
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/select.html',
+        controller: 'SelectCtrl',
+        controllerAs: 'select'
+      })
+      .when('/map', {
         templateUrl: 'views/map.html',
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
+      .when('/address', {
+        templateUrl: 'views/address.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })

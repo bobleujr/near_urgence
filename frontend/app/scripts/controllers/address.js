@@ -8,10 +8,13 @@
  * Controller of the nearUrgenceApp
  */
 angular.module('nearUrgenceApp')
-  .controller('AboutCtrl', function () {
+  .controller('AddressCtrl', function () {
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+
   });

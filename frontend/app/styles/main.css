@@ -197,6 +197,21 @@ h2 {
   margin-top: 7%;
 }
 
+.address-button {
+  /*padding-top: 30p;x;*/
+  /*text-align: center;*/
+  /*margin-top: 3%;*/
+
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 12px;
+  text-decoration: none;
+  margin: 15px;
+  color: #fff;
+  position: relative;
+  /*display: ;*/
+}
+
 
 /* start da css for da buttons */
 .btn {

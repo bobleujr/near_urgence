@@ -17,8 +17,17 @@ angular.module('nearUrgenceApp')
       geolocationService.getCurrentPosition().then($scope.onUserLocationFound);
     };
 
-    $scope.onUserLocationFound = function(qxw){
-      console.log(qxw);
+    $scope.onUserLocationFound = function(location){
+      console.log(location);
+    };
+
+    $scope.addressSelected = function(){
+        var location = $scope.autocomplete.getPlace().geometry.location;
+        $scope.lat = location.lat();
+        $scope.lng = location.lng();
+        console.log(location);
+
+        // $scope.$apply();
     };
 
     $scope.$on('gmPlacesAutocomplete::placeChanged', function(){
@@ -26,6 +35,7 @@ angular.module('nearUrgenceApp')
         $scope.lat = location.lat();
         $scope.lng = location.lng();
         $scope.$apply();
+        console.log(location);
     });
 
   }]);

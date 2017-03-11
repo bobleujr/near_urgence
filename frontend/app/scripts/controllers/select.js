@@ -12,5 +12,11 @@ angular.module('nearUrgenceApp')
     $scope.video = {
     id: '2u_t4HIuCH0'
   };
+
+    $scope.selectPlace = function($scope, code){
+      if(code === 1){
+        console.log("is it");
+      }
+    };
     // console.log(')
   }]);

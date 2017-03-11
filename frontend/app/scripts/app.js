@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'leaflet-directive',
-    'angularVideoBg'
+    'angularVideoBg',
+    'gm'
 
   ])
   .config(function ($routeProvider) {
@@ -34,10 +35,57 @@ angular
       })
       .when('/address', {
         templateUrl: 'views/address.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AddressCtrl',
+        controllerAs: 'address'
       })
       .otherwise({
         redirectTo: '/'
       });
   });
+
+
+angular
+  .module('nearUrgenceApp').service('TypeUrgenceService', function() {
+    var serviceType = 0;
+
+    var setServiceType = function(obj) {
+      serviceType = obj;
+    };
+
+    var getServiceType = function() {
+      return serviceType;
+    };
+
+
+  return {
+    setServiceType: setServiceType,
+    getServiceType: getServiceType
+  };
+
+});
+
+angular
+  .module('nearUrgenceApp').factory('geolocationSvc', ['$q', '$window', function ($q, $window) {
+
+    function getCurrentPosition() {
+        var deferred = $q.defer();
+
+        if (!$window.navigator.geolocation) {
+            deferred.reject('Geolocation not supported.');
+        } else {
+            $window.navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    deferred.resolve(position);
+                },
+                function (err) {
+                    deferred.reject(err);
+                });
+        }
+
+        return deferred.promise;
+    }
+
+    return {
+        getCurrentPosition: getCurrentPosition
+    };
+}]);

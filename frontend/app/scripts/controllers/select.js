@@ -8,15 +8,14 @@
  * Controller of the nearUrgenceApp
  */
 angular.module('nearUrgenceApp')
-  .controller('SelectCtrl', [ '$scope', function($scope) {
+  .controller('SelectCtrl', [ '$scope', '$location', 'TypeUrgenceService', function($scope, $location, typeUrgenceService) {
     $scope.video = {
     id: '2u_t4HIuCH0'
   };
 
-    $scope.selectPlace = function($scope, code){
-      if(code === 1){
-        console.log("is it");
-      }
+    $scope.selectPlace = function(code){
+      typeUrgenceService.setServiceType(code);
+      $location.path('/address');
+
     };
-    // console.log(')
   }]);

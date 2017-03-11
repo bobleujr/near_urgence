@@ -34,6 +34,13 @@ h1 {
   text-shadow: 2px 2px lightgray;
 }
 
+h3 {
+  font-family: "Noe Display Medium", serif;
+  font-size:600%;
+  color: whitesmoke;
+  text-shadow: 2px 2px lightgray;
+}
+
 .mapple-leaf {
   /*background-color: red;*/
   /*fill: red;*/
@@ -176,13 +183,20 @@ h2 {
 
 }
 
-
 /* button div */
 #buttons {
   padding-top: 50px;
   text-align: center;
   margin-top: 15%;
 }
+
+/* button div */
+#gps-button {
+  padding-top: 50px;
+  text-align: center;
+  margin-top: 7%;
+}
+
 
 /* start da css for da buttons */
 .btn {
@@ -256,3 +270,14 @@ h2 {
   background-color: #FFDE29;
 }
 
+
+.input-address{
+  display: block;
+  margin: 2em auto;
+  padding: 0.5em 0.25em;
+  border: none;
+  border-radius: 0.2em;
+  font-size: 1.5em;
+  text-align: center;
+  box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.2);
+}

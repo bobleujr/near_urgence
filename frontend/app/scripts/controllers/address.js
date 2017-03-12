@@ -9,7 +9,7 @@
  */
 angular.module('nearUrgenceApp')
   // .controller('AddressCtrl', [ '$scope', '$location', 'TypeUrgenceService', function($scope, $location, typeUrgenceService) {
-  .controller('AddressCtrl', [ '$scope', 'geolocationSvc', function($scope, geolocationService) {
+  .controller('AddressCtrl', [ '$scope', 'geolocationSvc', 'LocationService', function($scope, geolocationService, locationService) {
     $scope.lat = undefined;
     $scope.lng = undefined;
 
@@ -27,6 +27,8 @@ angular.module('nearUrgenceApp')
         $scope.lng = location.lng();
         console.log(location);
 
+        $scope.goToMap(lat,long);
+
         // $scope.$apply();
     };
 
@@ -37,5 +39,14 @@ angular.module('nearUrgenceApp')
         $scope.$apply();
         console.log(location);
     });
+
+    $scope.goToMap = function(lat,long){
+      var result = location(lat,long);
+      result.then(function(data){
+
+      })
+    };
+
+
 
   }]);

@@ -89,3 +89,29 @@ angular
         getCurrentPosition: getCurrentPosition
     };
 }]);
+
+angular
+  .module('nearUrgenceApp').service('LocationService', ['$q', 'TypeUrgenceService', function ($q, typeService) {
+    function getClosestPoint(lat, long) {
+        var deferred = $q.defer();
+
+          $http.post('/resources/item/list',{
+            lat:lat,
+            long:long,
+            type:typeService.getServiceType()
+          }).
+            success(function(data, status, headers, config) {
+                deferred.resolve(data);
+            }).
+            error(function(data, status, headers, config) {
+                deferred.reject(data);
+            });
+
+        return deferred.promise;
+    }
+
+    return {
+        getClosestPoint: getClosestPoint
+    };
+
+}]);

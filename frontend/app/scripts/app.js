@@ -91,11 +91,11 @@ angular
 }]);
 
 angular
-  .module('nearUrgenceApp').service('LocationService', ['$q', 'TypeUrgenceService', function ($q, typeService) {
+  .module('nearUrgenceApp').service('LocationService', ['$q', 'TypeUrgenceService', '$http', function ($q, typeService, $http) {
     function getClosestPoint(lat, long) {
         var deferred = $q.defer();
 
-          $http.post('/resources/item/list',{
+          $http.post('http://127.0.0.1:5000/',{
             lat:lat,
             long:long,
             type:typeService.getServiceType()

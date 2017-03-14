@@ -18,18 +18,16 @@ angular.module('nearUrgenceApp')
     };
 
     $scope.onUserLocationFound = function(location){
-      console.log(location);
+      $scope.goToMap(location.coords.latitude,location.coords.longitude);
     };
 
     $scope.addressSelected = function(){
         var location = $scope.autocomplete.getPlace().geometry.location;
         $scope.lat = location.lat();
         $scope.lng = location.lng();
-        console.log(location);
+        $scope.goToMap($scope.lat,$scope.lng);
 
-        $scope.goToMap(lat,long);
 
-        // $scope.$apply();
     };
 
     $scope.$on('gmPlacesAutocomplete::placeChanged', function(){
@@ -37,13 +35,14 @@ angular.module('nearUrgenceApp')
         $scope.lat = location.lat();
         $scope.lng = location.lng();
         $scope.$apply();
-        locationService.getClosestPoint($scope.lat, $scope.lng);
+        $scope.goToMap($scope.lat,$scope.lng);
         console.log(location);
     });
 
     $scope.goToMap = function(lat,long){
-      var result = location(lat,long);
+      var result = locationService.getClosestPoint(lat, long);
       result.then(function(data){
+        console.log("funfando");
         console.log(data);
       })
     };

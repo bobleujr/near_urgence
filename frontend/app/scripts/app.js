@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'leaflet-directive',
     'angularVideoBg',
-    'gm'
+    'gm',
+    'angularSpinner'
 
   ])
   .config(function ($routeProvider) {
@@ -121,3 +122,24 @@ angular
     };
 
 }]);
+
+
+angular
+  .module('nearUrgenceApp').service('MapService', function() {
+    var points = 0;
+
+    var setPoints = function(obj) {
+      points = obj;
+    };
+
+    var getPoints = function() {
+      return points;
+    };
+
+
+  return {
+    setPoints: setPoints,
+    getPoints: getPoints
+  };
+
+});

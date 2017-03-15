@@ -8,54 +8,47 @@
  * Controller of the nearUrgenceApp
  */
 angular.module('nearUrgenceApp')
-  .controller('MapCtrl', [ '$scope', 'leafletBoundsHelpers', function($scope, leafletBoundsHelpers) {
-
-    var maxbounds = leafletBoundsHelpers.createBoundsFromArray([
-      [37.8866, -79.4877],
-      [39.7230, -74.9863]
-    ]);
-
-
-    maxbounds.pad = 1.0;
+  .controller('MapCtrl', [ '$scope', 'leafletBoundsHelpers', 'MapService', function($scope, leafletBoundsHelpers, mapService) {
 
     angular.extend($scope, {
-      bounds: maxbounds,
-      center: {
-        lat: 37.8866,
-        lng: -79-4877,
-        zoom: 4
-      },
-      layers: {
-        baselayers: {
-          xyz: {
-            name: 'OpenStreetMap (XYZ)',
-            url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            type: 'xyz'
-          }
-        },
-        overlays: {}
-      },
-      markers: {
-        northeast: {
-          lat: 39.7230,
-          lng: -74.9863,
-          focus: true,
-          title: "Northeast",
-        },
-        southwest: {
-          lat: 37.8866,
-          lng: -79.4877,
-          title: "Southwest",
-        }
-      },
-      maxbounds: maxbounds
-    });
+                geojson: {
+                    data: mapService.getPoints().data
+                  // ,
+                  //   style: {
+                  //       fillColor: "green",
+                  //       weight: 2,
+                  //       opacity: 1,
+                  //       color: 'white',
+                  //       dashArray: '3',
+                  //       fillOpacity: 0.7
+                  //   }
+                },
+                defaults: {
+                      scrollWheelZoom: false
+                },
+                center: {
+                  lat: mapService.getPoints().data[0].geometry.coordinates[1],
+                  lng: mapService.getPoints().data[0].geometry.coordinates[0],
+                  zoom: 18
+                }
+
+            });
 
 
-    angular.extend($scope, {
-        defaults: {
-            scrollWheelZoom: false
-        }
-    });
+    // angular.extend($scope, {
+    //     defaults: {
+    //         scrollWheelZoom: false
+    //     }
+    // });
+
+    // function buildGeoJSON (){
+    //     var myList;
+    //     angular.forEach(mapService.getPoints(), function() {
+    //       var obj = {
+    //         type: ""
+    //       }
+    //     });
+
+    // }
 
   }]);

@@ -15,6 +15,7 @@ angular.module('nearUrgenceApp')
 
     $scope.selectPlace = function(code){
       typeUrgenceService.setServiceType(code);
+      console.log(code);
       $location.path('/address');
 
     };

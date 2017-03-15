@@ -9,9 +9,8 @@ app = Flask(__name__)
 
 CORS(app)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def index():
-
 
     params = json.loads(request.data)
 
@@ -27,7 +26,7 @@ def index():
     response = dumps(db.find({"geometry":
                                  {"$near":
                                       {"$geometry":
-                                           {"type" : "Point" ,"coordinates":[ float(params['lat']), float(params['long']) ]}
+                                           {"type" : "Point" ,"coordinates":[ float(params['long']), float(params['lat']) ]}
                                        }
                                   }
                              }).limit(5))

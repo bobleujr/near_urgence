@@ -95,11 +95,16 @@ angular
     function getClosestPoint(lat, long) {
         var deferred = $q.defer();
 
-          $http.post('http://127.0.0.1:5000/',{
+          $http.post('http://127.0.0.1:5000/',
+            {
             lat:lat,
             long:long,
             type:typeService.getServiceType()
-          }).then(
+            },
+            {
+              'Content-Type': 'application/json'
+            }
+          ).then(
             function(data, status, headers, config) {
                 deferred.resolve(data);
             },

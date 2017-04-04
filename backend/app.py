@@ -24,11 +24,11 @@ def index():
 
     # response = list(db.find({"geometry": {"$near": [float(params['lat']), float(params['long'])]}}).limit(5))
     response = dumps(db.find({"geometry":
-                                 {"$near":
-                                      {"$geometry":
-                                           {"type" : "Point" ,"coordinates":[ float(params['long']), float(params['lat']) ]}
-                                       }
-                                  }
+                             {"$near":
+                             {"$geometry":
+                             {"type" : "Point" ,"coordinates":[ float(params['long']), float(params['lat']) ]}
+                             }
+                             }
                              }).limit(5))
 
     # response = json.dumps(response)

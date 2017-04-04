@@ -8,11 +8,44 @@
  * Controller of the nearUrgenceApp
  */
 angular.module('nearUrgenceApp')
-  .controller('MapCtrl', [ '$scope', 'leafletBoundsHelpers', 'MapService', function($scope, leafletBoundsHelpers, mapService) {
+  .controller('MapCtrl', [ '$scope', 'leafletBoundsHelpers', 'MapService', 'TypeUrgenceService' function($scope, leafletBoundsHelpers, mapService, typeUrgenceService) {
 
     angular.extend($scope, {
                 geojson: {
-                    data: mapService.getPoints().data
+                    data: mapService.getPoints().data,
+                    // ,
+                    onEachFeature: function(feature,layer){
+                      var message = '';
+                      if (typeUrgenceService.getServiceType() == 0){
+                        message = "Name: "+ feature.properties.LABEL+"<br>"+
+                                    "Address: "+ feature.properties.FULL_ADDRE+"<br>"+
+                                    "Provider: "+ feature.properties.PROVIDER+"<br>"+
+                                    "Postal Code: "+ feature.properties.P_Code+"<br>";
+
+                      } else if (typeUrgenceService.getServiceType() == 1){
+                        message = "Name: "+ feature.properties.LABEL+"<br>"+
+                                    "Address: "+ feature.properties.ADDRESS+"<br>"+
+                                    "GTA City: "+ feature.properties.MUN_NAME+"<br>"+
+                                    "Area: "+ feature.properties.WARD_NAME+"<br>";
+                      } else if (typeUrgenceService.getServiceType() == 2){
+                        message = "Name: "+ feature.properties.EMS_NAME+"<br>"+
+                                    "Address: "+ feature.properties.EMS_ADDRES+"<br>";
+                                    // "GTA City: "+ feature.properties.MUN_NAME+"<br>"+
+                                    // "Area: "+ feature.properties.WARD_NAME+"<br>";
+
+                      }
+                      // else(typeUrgenceService.getServiceType() == 3){
+                      //   message = "Name: "+ feature.properties.LABEL+"<br>"+
+                      //               "Address: "+ feature.properties.FULL_ADDRE+"<br>"+
+                      //               "GTA City: "+ feature.properties.MUN_NAME+"<br>"+
+                      //               "Area: "+ feature.properties.WARD_NAME+"<br>";
+                      //
+                      // }
+
+
+
+                      layer.bindPopup(message);
+                    }
                   // ,
                   //   style: {
                   //       fillColor: "green",

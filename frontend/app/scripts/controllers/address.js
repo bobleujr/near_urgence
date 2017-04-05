@@ -42,6 +42,7 @@ angular.module('nearUrgenceApp')
     });
 
     $scope.goToMap = function(lat,long){
+      locationService.setOriginPoint(lat, long);
       var result = locationService.getClosestPoint(lat, long);
       result.then(function(data){
           mapService.setPoints(data);

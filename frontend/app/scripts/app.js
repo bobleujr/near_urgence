@@ -93,6 +93,19 @@ angular
 
 angular
   .module('nearUrgenceApp').service('LocationService', ['$q', 'TypeUrgenceService', '$http', function ($q, typeService, $http) {
+    var lat, long;
+
+
+
+    function setOriginPoint(lat1,long1){
+      lat = lat1;
+      long = long1;
+    }
+
+    function getOriginPoint(){
+      return {'lat':lat,'long':long};
+    }
+
     function getClosestPoint(lat, long) {
         var deferred = $q.defer();
 
@@ -118,7 +131,9 @@ angular
     }
 
     return {
-        getClosestPoint: getClosestPoint
+        getClosestPoint: getClosestPoint,
+        getOriginPoint: getOriginPoint,
+        setOriginPoint: setOriginPoint,
     };
 
 }]);

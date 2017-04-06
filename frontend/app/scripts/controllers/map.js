@@ -15,7 +15,6 @@ angular.module('nearUrgenceApp')
                     data: mapService.getPoints().data,
                     // ,
                     onEachFeature: function(feature,layer){
-                      console.log(locationSvc.getOriginPoint())
                       var message = '';
                       var directions = "<a href='https://www.google.ca/maps/dir/" +
                         +locationSvc.getOriginPoint()['lat']+","+locationSvc.getOriginPoint()['long']+
@@ -39,30 +38,15 @@ angular.module('nearUrgenceApp')
                                     "Address: "+ feature.properties.EMS_ADDRES+"<br>"+
                                     "Get directions: "+ directions+"<br>";
 
-                                    // "Area: "+ feature.properties.WARD_NAME+"<br>";
 
                       }
-                      // else(typeUrgenceService.getServiceType() == 3){
-                      //   message = "Name: "+ feature.properties.LABEL+"<br>"+
-                      //               "Address: "+ feature.properties.FULL_ADDRE+"<br>"+
-                      //               "GTA City: "+ feature.properties.MUN_NAME+"<br>"+
-                      //               "Area: "+ feature.properties.WARD_NAME+"<br>";
-                      //
-                      // }
+
 
 
 
                       layer.bindPopup(message);
                     }
-                  // ,
-                  //   style: {
-                  //       fillColor: "green",
-                  //       weight: 2,
-                  //       opacity: 1,
-                  //       color: 'white',
-                  //       dashArray: '3',
-                  //       fillOpacity: 0.7
-                  //   }
+
                 },
                 defaults: {
                       scrollWheelZoom: false
@@ -75,6 +59,7 @@ angular.module('nearUrgenceApp')
 
 
             });
+
 
 
     // $scope.$on("leafletDirectiveGeoJson.click", function(event, args){

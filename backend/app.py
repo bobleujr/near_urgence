@@ -22,22 +22,13 @@ def index():
     elif int(params['type']) == 2:
         db = client.toronto.ambulance
 
-    # response = list(db.find({"geometry": {"$near": [float(params['lat']), float(params['long'])]}}).limit(5))
     response = dumps(db.find({"geometry":
-                             {"$near":
-                             {"$geometry":
-                             {"type" : "Point" ,"coordinates":[ float(params['long']), float(params['lat']) ]}
-                             }
-                             }
+                                {"$near":
+                                    {"$geometry":
+                                        {"type" : "Point" ,"coordinates":[ float(params['long']), float(params['lat']) ]}
+                                    }
+                                }
                              }).limit(5))
-
-    # response = json.dumps(response)
-    # db.places.find({point: { $near: [151.1955562233925, -33.87107475181752], $maxDistance: 0.1 / 111}} )
-
-    # elif params.type == 3:
-    #     db = client.test.desfibrilator
-    # elif params.type == 4:
-
 
 
     return response

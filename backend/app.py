@@ -9,12 +9,11 @@ app = Flask(__name__)
 
 CORS(app)
 
-@app.route('/', methods=['POST'])
-def index():
-
+@app.route('/coordinates', methods=['POST'])
+def get_nearest():
     params = json.loads(request.data)
 
-
+    
     if int(params['type']) == 0:
         db = client.toronto.police
     elif int(params['type']) == 1:
@@ -33,6 +32,11 @@ def index():
 
     return response
 
+@app.route('/', methods=['GET'])
+def index():
+    return "OK"
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = True
+    app.run()
 

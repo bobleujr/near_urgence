@@ -18,10 +18,12 @@ angular
     'ngTouch',
     'leaflet-directive',
     'angularVideoBg',
-    'gm',
-    'angularSpinner'
+    'angularSpinner',
+    'gm'
 
   ])
+  //'gm',
+
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -108,8 +110,9 @@ angular
 
     function getClosestPoint(lat, long) {
         var deferred = $q.defer();
-
-          $http.post('http://127.0.0.1:5000/',
+          ////flaks-nearurgence.herokuapp.com/coordinates
+          // $http.post('http://flaks-nearurgence.herokuapp.com/coordinates',
+          $http.post('http://127.0.0.1:5000/coordinates',
             {
             lat:lat,
             long:long,
@@ -158,3 +161,5 @@ angular
   };
 
 });
+
+

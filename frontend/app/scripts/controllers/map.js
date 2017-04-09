@@ -60,6 +60,9 @@ angular.module('nearUrgenceApp')
 
             });
 
+    $scope.changePoint = function(type){
+      console.log(type);
+    }
 
 
     // $scope.$on("leafletDirectiveGeoJson.click", function(event, args){

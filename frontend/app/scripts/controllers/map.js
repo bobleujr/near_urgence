@@ -11,6 +11,7 @@ angular.module('nearUrgenceApp')
   .controller('MapCtrl', [ '$scope', 'leafletBoundsHelpers', 'MapService', 'TypeUrgenceService', 'LocationService', function($scope, leafletBoundsHelpers, mapService, typeUrgenceService, locationSvc) {
     $scope.selectedPoint = 0;
 
+
     angular.extend($scope, {
                 geojson: {
                     data: mapService.getPoints().data,
@@ -46,7 +47,20 @@ angular.module('nearUrgenceApp')
 
 
                       layer.bindPopup(message);
-                    }
+
+
+                    },
+                  pointToLayer: function(feature, latlng) {
+                    var marker = new L.marker(latlng, {icon: L.icon({
+                        iconUrl: 'http://sleders.com/wp-content/uploads/leaflet-maps-marker-icons/Flag2LeftRed_256x256-32.png',
+                          iconSize:     [64, 64], // size of the icon
+                          // shadowSize:   [50, 64], // size of the shadow
+                          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                          // shadowAnchor: [4, 62],  // the same for the shadow
+                          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                      })});
+                    return marker;
+                  },
 
                 },
                 defaults: {

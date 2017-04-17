@@ -9,6 +9,7 @@
  */
 angular.module('nearUrgenceApp')
   .controller('MapCtrl', [ '$scope', 'leafletBoundsHelpers', 'MapService', 'TypeUrgenceService', 'LocationService', function($scope, leafletBoundsHelpers, mapService, typeUrgenceService, locationSvc) {
+    $scope.selectedPoint = 0;
 
     angular.extend($scope, {
                 geojson: {
@@ -61,7 +62,19 @@ angular.module('nearUrgenceApp')
             });
 
     $scope.changePoint = function(type){
-      console.log(type);
+      if(type == 0){
+        $scope.selectedPoint == 0 ? $scope.selectedPoint = 4 : $scope.selectedPoint-- ;
+      }else{
+        $scope.selectedPoint == 4 ? $scope.selectedPoint = 0 : $scope.selectedPoint++ ;
+      }
+
+      angular.extend($scope, {
+        center: {
+                  lat: mapService.getPoints().data[$scope.selectedPoint].geometry.coordinates[1],
+                  lng: mapService.getPoints().data[$scope.selectedPoint].geometry.coordinates[0],
+                  zoom: 18
+                }
+      });
     }
 
 

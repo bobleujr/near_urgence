@@ -296,3 +296,9 @@ h2 {
   text-align: center;
   box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.2);
 }
+
+
+.change-text {
+  cursor: pointer;
+  font-size: 24px;
+}
